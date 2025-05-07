@@ -44,6 +44,7 @@ export default defineConfig({
     sidebar: [
       {
         items: [
+          { text: '入门', link: '/Introduction.md' },
           { text: '教程', link: '/tutorial' },
           { text: '字根练习', link: '/gen'},
          // { text: '露台', link: '/lutai'}

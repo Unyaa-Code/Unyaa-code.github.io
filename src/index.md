@@ -7,9 +7,9 @@ hero:
   text: "呜喵码"
   tagline: 一款26键、双编码、低重码，拥有舒适手感的高性能中文输入方案
   actions:
-#    - theme: brand
-#      text: 教程
-#      link: /tutorial
+    - theme: brand
+      text: 快速入门
+      link: /Introduction
     - theme: alt
       text: 字根学习
       link: /gen
