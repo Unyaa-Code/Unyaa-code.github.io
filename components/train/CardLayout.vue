@@ -82,7 +82,7 @@ fileInput.click();
 
 <template>
     <div
-        :class="['md:w-2/3 w-full shadow-sm my-12 pb-24 bg-opacity-10 transition-color rounded-md', { 'bg-red-700': !isCorrect, 'bg-slate-500': isCorrect }]">
+        :class="['md:w-2/3 w-full shadow-sm my-6 pb-20 bg-opacity-10 transition-color rounded-md', { 'bg-red-700': !isCorrect, 'bg-slate-500': isCorrect }]">
         <div class="flex justify-center mb-24">
             <progress class="progress w-full" :value="progress" :max />
         </div>
@@ -98,10 +98,10 @@ fileInput.click();
         </template>
     </div>
 
-    <div v-if="!showConfetti" class="text-gray-500 flex justify-between">
-        <div class="text-gray-500">训练进度： {{ progress }} / {{ max }}</div>
-        <button @click="exportLocalStorage">导出</button>
-        <button @click="importLocalStorage">导入（需要刷新）</button>
-        <button class="btn btn-ghost btn-sm font-light" @click="$emit('restart')">重置</button>
+    <div v-if="!showConfetti" class="text-gray-500 flex flex-nowrap items-center md:justify-between overflow-x-auto gap-2 md:gap-4">
+        <div class="text-gray-500 flex justify-between md:text-base text-sm">训练进度： {{ progress }} / {{ max }}</div>
+        <button class="md:text-sm text-xs" @click="exportLocalStorage">导出</button>
+        <button class="md:text-sm text-xs" @click="importLocalStorage">导入（需要刷新）</button>
+        <button class="btn btn-ghost md:text-sm text-xs font-light" @click="$emit('restart')">重置</button>
     </div>
 </template>

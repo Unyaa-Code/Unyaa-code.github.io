@@ -108,17 +108,16 @@ watch(userKeys, (newKeys) => {
 
 <template>
     <CardLayout :progress :max="cards.length" :isCorrect :id @restart="cusRestart">
-        <div class="flex justify-center items-center mb-8 ">
+        <div class="flex flex-col md:flex-row justify-center items-center md:mb-8 mb-4">
             <div
-                 :class="['text-6xl mr-12 align-middle animate__animated', zigenFontClass, { 'text-red-400': !isCorrect, 'animate__headShake': !isCorrect }]">
+                 :class="['md:text-6xl md:mr-3 text-4xl mr-0 align-middle animate__animated', zigenFontClass, { 'text-red-400': !isCorrect, 'animate__headShake': !isCorrect }]">
                 {{ card.name }}</div>
 
             <div class="flex flex-col" v-if="'rel' in card || 'kind' in card">
                 <div class="flex tracking-widest flex-col opacity-80" v-if="'rel' in card">
-                    <div class="text-gray-500 text-sm">
-                        相关的字：</div>
-                    <div>
-                        {{ card.rel }}</div>
+                    <div class="text-gray-500 md:text-sm text-xs">
+                        例字：</div>
+                        <div class="md:text-base text-sm">{{ card.rel }}</div>
                     <template v-if="card._classZigen">
                         <div class="text-gray-500 text-sm mt-4 mb-2">
                             相似字根：</div>
