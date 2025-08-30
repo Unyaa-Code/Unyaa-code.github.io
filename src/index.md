@@ -8,11 +8,14 @@ hero:
   tagline: 一款26键、双编码、低重码，拥有舒适手感的高性能中文输入方案
   actions:
     - theme: brand
-      text: 快速入门
-      link: /Introduction
-    - theme: alt
-      text: 字根学习
-      link: /gen
+      text: 新版筹备中,旧版不建议学习
+
+    # - theme: brand
+    #   text: 快速入门
+    #   link: /Introduction
+    # - theme: alt
+    #   text: 字根学习
+    #   link: /gen
 
 features:
   - title: 乱序字根
