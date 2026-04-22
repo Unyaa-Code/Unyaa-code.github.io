@@ -15,9 +15,14 @@ const p = defineProps<{
      * 要确保 zigen.json 里有 secondary 字段,   
      * 用于奕码 */
     trainSecondary?: boolean
+    /** 需要高亮的字根 */
+    high?: string
 }>()
 
 provide("font", p.zigenFont)
+if (p.high) {
+    provide('high', new Set(p.high))
+}
 
 const schemaName = getSchemaNameFromRoute()
 const name = p.name || schemaName

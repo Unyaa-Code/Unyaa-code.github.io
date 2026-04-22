@@ -1,19 +1,14 @@
 <script setup lang="ts">
-/** 注意要 provide 字根字体的名称 */
 import { shallowRef } from "vue";
 import { watchThrottled, useUrlSearchParams } from "@vueuse/core";
 import SearchAsync from "./SearchAsync.vue";
 import SearchHanzi from "./SearchHanzi.vue";
 import SearchHelp from "./SearchHelp.vue";
 import type { HanziCardMap, ZigenCardMap, ReformatHandler, SearchCardsPropsArray } from "./share";
-import { textToCardsProps } from "./share";
+import { textToCardsProps, readKeyReformatHandler } from "./share";
 const p = defineProps<{
-    /** 汉字到拆分表的映射 */
     hanziMap: HanziCardMap
-    /** 字根到按键的映射，  
-     * 汉字的拆分表可能含有编码信息，这时候就不需要zigenMap了 */
     zigenMap?: ZigenCardMap
-    /** 重定义 字根和它编码 */
     reformat?: ReformatHandler
 }>()
 
@@ -22,15 +17,15 @@ const customTextToCardsProps = (text: string) => textToCardsProps(text, p.hanziM
 const urlSearchParams = useUrlSearchParams()
 const userInput = shallowRef(urlSearchParams?.q || '')
 const searchPatterns = shallowRef<string[]>([])
-/** 反查的类型：字、拼音、四角(笔画)、空类型 */
-const kind = shallowRef<'z' | 'p' | 'b' | ''>()
+const kind = shallowRef<'z' | 'k' | 'p' | 'b' | ''>()
 
-// 推断用户输入的类型
 watchThrottled(userInput, () => {
     const user = userInput.value as string
     urlSearchParams.q = user
     searchPatterns.value = [...user]
-    if (/^\d+/.test(user)) {
+    if (user.startsWith('/')) {
+        kind.value = 'k'
+    } else if (/^\d+/.test(user)) {
         kind.value = 'b'
     } else if (/^[a-z]+/.test(user)) {
         kind.value = 'p'
@@ -43,6 +38,28 @@ watchThrottled(userInput, () => {
 
 
 const searchHanzi = () => customTextToCardsProps(searchPatterns.value.join(''))
+
+const searchByKey = (): SearchCardsPropsArray => {
+    const input = (userInput.value as string).slice(1).trim()
+    if (!input) return []
+    const keys = input.split(/\s+/)
+    const result: SearchCardsPropsArray = []
+    for (const key of keys) {
+        for (const [zi, card] of p.hanziMap) {
+            if (card.key && card.key.split(' ').includes(key)) {
+                const fmtResult = p.reformat 
+                    ? p.reformat(card, p.zigenMap) 
+                    : readKeyReformatHandler(card, p.zigenMap)
+                result.push({ 
+                    zi, 
+                    key: fmtResult.key || card.key,
+                    data: fmtResult.data 
+                })
+            }
+        }
+    }
+    return result
+}
 
 const handler = (json: any, text: string): SearchCardsPropsArray => (text in json) ? customTextToCardsProps(json[text] as string) : []
 
@@ -64,6 +81,7 @@ const handler = (json: any, text: string): SearchCardsPropsArray => (text in jso
 
     <div v-if="kind === ''" class="opacity-40 text-center p-9 tracking-widest">从上方搜索条开始反查吧!</div>
     <SearchHanzi v-else-if="kind === 'z'" :result="searchHanzi()" />
+    <SearchHanzi v-else-if="kind === 'k'" :result="searchByKey()" />
     <SearchAsync v-else-if="kind === 'p'" title="拼音" json="/data/pinyin.json" :handler :text="searchPatterns" />
     <template v-else>
         <SearchAsync title="笔划" json="/data/bihua.json" :handler :text="searchPatterns" />

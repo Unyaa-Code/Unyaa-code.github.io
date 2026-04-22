@@ -6,6 +6,7 @@
     "@types/node": "^20.11.24",
     "autoprefixer": "^10.4.18",
     "daisyui": "^4.12.10",
+    "markdown-it-footnote": "^4.0.0",
     "medium-zoom": "^1.1.0",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.10",
@@ -15,7 +16,7 @@
   "license": "GPL-3.0-only",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dsqm/Unyaa-code"
+    "url": "https://github.com/Unyaa-Code/Unyaa-code.github.io"
   },
   "type": "module",
   "scripts": {

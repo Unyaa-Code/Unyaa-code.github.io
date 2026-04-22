@@ -12,7 +12,8 @@ const p = defineProps<{
 }>()
 
 const zigenFontClass = inject('font') || 'outi-yima'
-const hasClass = inject<boolean>('hasClass') || false
+const hasClass = inject<boolean>('hasClass', false)
+const highlightStrokes = inject('high') as Set<string>
 let cards = structuredClone(p.cards)
 if (hasClass) {
     // 归类只有字根卡片会用到，所以可以强行转换类型
@@ -111,7 +112,13 @@ watch(userKeys, (newKeys) => {
         <div class="flex flex-col md:flex-row justify-center items-center md:mb-8 mb-4">
             <div
                  :class="['md:text-6xl md:mr-3 text-4xl mr-0 align-middle animate__animated', zigenFontClass, { 'text-red-400': !isCorrect, 'animate__headShake': !isCorrect }]">
-                {{ card.name }}</div>
+                <template v-if="card.name.length > 1">
+                    <span v-for="(char, index) in card.name" :key="index" :class="{ 'highlight-text': highlightStrokes && highlightStrokes.has(char) }">{{ char }}</span>
+                </template>
+                <template v-else>
+                    <span :class="{ 'highlight-text': highlightStrokes && highlightStrokes.has(card.name) }">{{ card.name }}</span>
+                </template>
+            </div>
 
             <div class="flex flex-col" v-if="'rel' in card || 'kind' in card">
                 <div class="flex tracking-widest flex-col opacity-80" v-if="'rel' in card">

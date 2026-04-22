@@ -70,7 +70,7 @@ const cusRestart = () => {
     <div :class="['text-center', { 'opacity-0': isCorrect }]">答案是
         <b class="font-mono">{{ card!.key }}</b>
         <span :class="[zigenFontClass, 'tracking-widest opacity-80']" v-if="'comp' in card!">
-            (<span v-for="zg of card.comp" :class="{ 'round-bg': highlightStrokes.has(zg) }">{{ zg }}</span>)</span>
+            (<span v-for="zg of card.comp" :class="{ 'highlight-text': highlightStrokes.has(zg) }">{{ zg }}</span>)</span>
     </div>
 </CardLayout>
 </template>

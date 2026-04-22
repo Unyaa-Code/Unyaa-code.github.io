@@ -16,7 +16,7 @@
                 <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
             <p>
-                这个网页可以方便地查询逸码的拆分，可以链接到
+                这个网页可以方便地查询<b>呜喵码</b>的拆分，可以链接到
                 <a href="https://zi.tools/" target="_blank" rel="noreferrer">
                     字统网
                 </a>
@@ -33,9 +33,8 @@
                     汉典网
                 </a>
                 。本网页会过滤码表之外的字符。
-            <p>网页在第一次查询拼音、四角、笔画时，需要下载相应的数据，请稍后。</p>
-
             </p>
+            <p>网页在第一次查询拼音、四角、笔画时，需要下载相应的数据，请稍后。</p>
             <h4>① 查询汉字</h4>
             <p>
                 输入要查询的文字（可多个汉字），程序会显示每个汉字的拆分。
@@ -56,8 +55,12 @@
                 <a href="https://baike.baidu.com/item/%E5%9B%9B%E8%A7%92%E5%8F%B7%E7%A0%81/1217626" target="_blank"
                     rel="noreferrer">
                     四角号码
-                </a>{" "}
+                </a>
                 反查相关汉字。填入4个数字或5个数字。
+            </p>
+            <h4>⑤ 编码查字</h4>
+            <p>
+                以/开头可使用编码查询字符，可使用空格查询多个。
             </p>
         </div>
 

@@ -5,7 +5,7 @@
 }
 
 .heiti-Unyaa {
-    font-family: "Unyaa-codePUA", "Source Han Sans CN", "Microsoft YaHei","PingFang SC", '黑体', "Noto Sans CJK SC", "MiSans", "HarmonyOS Sans SC", "OPPOSans", sans-serif;
+    font-family: "Unyaa-codePUA", "Source Han Sans CN", "Microsoft YaHei","PingFang SC", '黑体', "Noto Sans CJK SC", "MiSans", "MiSans L3", "HarmonyOS Sans SC", "OPPOSans", sans-serif;
 }
 
 :root {
@@ -23,7 +23,6 @@
 
     --vp-home-hero-image-background-image: none;
     --vp-home-hero-image-filter: none;
-    --vp-nav-bg-color: var(--vp-c-bg-soft);
 }
 
 .medium-zoom-overlay {

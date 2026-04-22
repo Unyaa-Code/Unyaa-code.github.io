@@ -23,14 +23,19 @@ export interface ZigenCard {
     _idx?: number
 }
 
+/** 字根部件项 */
+export interface CompItem {
+    [key: string]: string
+}
+
 /** 汉字信息 */
 export interface HanziCard {
     /** 汉字 */
     name: string,
     /** 编码 */
     key?: string,
-    /** 拆分 */
-    comp?: string,
+    /** 拆分（字符串格式，旧版兼容） */
+    comp?: string | CompItem[],
 }
 
 export type Card = ZigenCard | HanziCard

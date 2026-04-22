@@ -8,6 +8,6 @@ defineProps<{
 
 <template>
     <div class="flex justify-center flex-wrap my-8">
-        <Card v-for="r of result" :key="r.zi" :name="r.zi" :data="r.data" />
+        <Card v-for="r of result" :key="r.zi" :name="r.zi" :data="r.data" :cardKey="r.key" />
     </div>
 </template>
