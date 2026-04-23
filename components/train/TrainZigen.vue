@@ -17,12 +17,15 @@ const p = defineProps<{
     trainSecondary?: boolean
     /** 需要高亮的字根 */
     high?: string
+    /** 只练首码 */
+    firstKeyOnly?: boolean
 }>()
 
 provide("font", p.zigenFont)
 if (p.high) {
     provide('high', new Set(p.high))
 }
+provide('firstKeyOnly', p.firstKeyOnly ?? false)
 
 const schemaName = getSchemaNameFromRoute()
 const name = p.name || schemaName

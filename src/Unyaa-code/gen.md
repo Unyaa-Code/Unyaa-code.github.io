@@ -6,7 +6,7 @@ import Train from "../../components/train/TrainZigen.vue"
 import {high} from "../high.ts"
 </script>
 # 呜喵码·字根循环器
-<Train zigenFont = "heiti-Unyaa" name = "Unyaa-code" :high />
+<Train zigenFont="heiti-Unyaa" name="Unyaa-code" :high="high" />
 :::info 提示
 1. 绝对不要看着字根图打！  
 2. 按对会自动跳下一个  
