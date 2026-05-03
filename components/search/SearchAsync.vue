@@ -42,7 +42,7 @@ const result = computed(() => {
             <span class="text-sm">（共 {{ result.length }} 条）</span>
         </h3>
         <div class="flex justify-center flex-wrap my-8">
-            <Card v-for="r of result" :key="r.zi" :name="r.zi" :data="r.data" />
+            <Card v-for="r of result" :key="r.zi" :name="r.zi" :data="r.data" :cardKey="r.key" />
         </div>
     </template>
 </template>

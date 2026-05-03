@@ -99,7 +99,7 @@ fileInput.click();
     </div>
 
     <div v-if="!showConfetti" class="text-gray-500 flex flex-nowrap items-center md:justify-between overflow-x-auto gap-2 md:gap-4">
-        <div class="text-gray-500 flex justify-between md:text-base text-sm">训练进度： {{ progress }} / {{ max }}</div>
+        <div class="text-gray-500 flex justify-between md:text-base text-sm">进度： {{ progress }} / {{ max }}</div>
         <button class="md:text-sm text-xs" @click="exportLocalStorage">导出</button>
         <button class="md:text-sm text-xs" @click="importLocalStorage">导入（需要刷新）</button>
         <button class="btn btn-ghost md:text-sm text-xs font-light" @click="$emit('restart')">重置</button>

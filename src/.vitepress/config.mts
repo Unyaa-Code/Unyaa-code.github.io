@@ -41,21 +41,37 @@ export default defineConfig({
   themeConfig: {
   logo: '/icon.svg',
     nav: [
-      { text: '主页', link: '/' }
+      { text: '主页', link: '/' },
+      { text: '下载与安装', link: '/Unyaa-code/install' },
+      { text: '关于', link: '/Unyaa-code/about' },
     ],
-    sidebar: [
-      {
-        items: [
-          { text: '快速入门', link: '/Unyaa-code/Introduction.md' },
-          { text: '呜喵教程', link: '/Unyaa-code/tutorial' },
-          { text: '字根学习', link: '/Unyaa-code/gen'},
-          { text: '字根进阶练习', link: '/Unyaa-code/gen-pro'},
-          { text: '拆分查询', link: '/Unyaa-code/search'},
-          { text: '下载与安装', link: '/Unyaa-code/install'},
-          { text: '测评数据', link: '/Unyaa-code/Assessment'},
-        ]
-      }
-    ],
+    sidebar: {
+      '/Unyaa-code/about': [
+        {
+          items: [
+            { text: '关于', link: '/Unyaa-code/about' },
+          ]
+        }
+      ],
+      '/': [
+        {
+          items: [
+            { text: '快速入门', link: '/Unyaa-code/Introduction.md' },
+            { text: '呜喵教程', link: '/Unyaa-code/tutorial' },
+            { text: '字根学习', link: '/Unyaa-code/gen'},
+            { text: '必拆汉字练习', link: '/Unyaa-code/zi'},
+            { text: '字根进阶练习', link: '/Unyaa-code/gen-pro'},
+          ]
+        },
+        {
+          items: [
+            { text: '拆分查询', link: '/Unyaa-code/search'},
+            { text: '下载与安装', link: '/Unyaa-code/install'},
+            { text: '测评数据', link: '/Unyaa-code/Assessment'},
+          ]
+        }
+      ]
+    },
     darkModeSwitchLabel: "黑暗模式",
     langMenuLabel: "选择语言",
     returnToTopLabel: "回到顶部",

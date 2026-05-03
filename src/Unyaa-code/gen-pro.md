@@ -7,10 +7,8 @@ import {high} from "../high.ts"
 </script>
 # 呜喵码·字根循环器-进阶练习
 <Train zigenFont="heiti-Unyaa" name="Unyaa-code-Pro" :high="high" zigenJson="/Unyaa-code/zigen2.json" />
->不建议萌新使用该练习  
-:::info 提示
-1. 绝对不要看着字根图打！  
-2. 按对会自动跳下一个  
-3. 按错会很快重复出现  
-4. 五秒内想不起来就按空格。  
+:::info 须知
+1. 归并字根分开
+2. 不建议萌新使用该练习
+3. 用于字根长期复习
 :::

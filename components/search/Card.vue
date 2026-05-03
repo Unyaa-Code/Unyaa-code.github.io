@@ -57,12 +57,10 @@ const unicodeHex = computed(() => {
         <div class="text-3xl text-blue-800 dark:text-blue-400 mb-3 heiti-Unyaa">{{ name }}</div>
         
         <div class="text-sm mb-2 flex items-start justify-center" v-if="cardKey">
-            <span class="text-gray-600 dark:text-gray-400 shrink-0">编码：</span>
             <span class="font-mono text-blue-600 dark:text-blue-300">{{ cardKey }}</span>
         </div>
         
         <div class="text-sm mb-2 flex items-start justify-center" v-if="data && data.length > 0">
-            <span class="text-gray-600 dark:text-gray-400 shrink-0">拆分：</span>
             <ruby v-for="zigenAndKey in data" :key="zigenAndKey.zigen + zigenAndKey.key" class="mx-0.5 heiti-Unyaa">
                 <span :class="{ 'highlight-text': highlightStrokes && highlightStrokes.has(zigenAndKey.zigen) }">
                     {{ zigenAndKey.zigen }}</span>
