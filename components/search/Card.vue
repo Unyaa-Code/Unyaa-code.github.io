@@ -14,14 +14,14 @@ const p = defineProps<{
 
 const highlightStrokes = inject('high') as Set<string>
 const getUnicodeBlock = inject<(codePoint: number) => string | null>('getUnicodeBlock')
-const getCharRange = inject<(char: string) => string[] | null>('getCharRange')
+const getCharRange = inject<(char: string) => (string | number)[] | null>('getCharRange')
 
 const uriText = computed(() => encodeURIComponent(p.name))
 
 const rangeLabels: Record<string, string> = {
-    'level1': '通规一级字',
-    'level2': '通规二级字',
-    'gb2312': 'gb2312'
+    '1': '通规一级字',
+    '2': '通规二级字',
+    '8': 'gb2312',
 }
 
 const unicodeInfo = computed(() => {
@@ -37,7 +37,7 @@ const unicodeInfo = computed(() => {
         const ranges = getCharRange(p.name)
         if (ranges) {
             for (const r of ranges) {
-                parts.push(rangeLabels[r] || r)
+                parts.push(rangeLabels[String(r)] || String(r))
             }
         }
     }

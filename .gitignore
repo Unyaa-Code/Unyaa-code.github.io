@@ -2,3 +2,5 @@ node_modules
 dist
 ___*
 src/.vitepress/cache
+*.json.gz
+src/public/data-version.json

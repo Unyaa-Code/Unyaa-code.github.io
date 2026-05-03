@@ -50,7 +50,7 @@ const getUnicodeBlock = (codePoint: number): string | null => {
     return null
 }
 
-const getCharRange = (char: string): string[] | null => {
+const getCharRange = (char: string): (string | number)[] | null => {
     if (!charRange) return null
     return charRange[char] || null
 }
