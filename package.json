@@ -24,7 +24,7 @@
     "prebuild2": "node scripts/compress-data.js",
     "dev": "vitepress dev src",
     "build": "vitepress build src",
-    "build2": "vitepress build src --base /Unyaa-code/",
+    "build2": "vitepress build src",
     "preview": "vitepress preview src "
   },
   "dependencies": {
