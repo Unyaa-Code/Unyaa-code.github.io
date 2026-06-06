@@ -25,9 +25,7 @@ const readKeyReformatHandler: ReformatHandler = (hanziInfo, _) => {
     }
     const data: ZigenAndKeyArray = []
     for (const item of comp) {
-        for (const [key, zigen] of Object.entries(item)) {
-            data.push({ zigen, key })
-        }
+        data.push({ key: item[0], zigen: item[1] })
     }
     return { data, key: hanziInfo.key }
 }

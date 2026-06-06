@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /** 单字练习 使用SM2算法 */
 import { shallowRef, onMounted, provide } from "vue";
-import { HanziCard, ZigenCard, cache, fetchJsonWithCache } from "./share";
+import { HanziCard, ZigenCard, CompItem, cache, fetchJsonWithCache } from "./share";
 import Train from "./anki/TrainAnki.vue";
 
 const p = defineProps<{
@@ -55,7 +55,7 @@ onMounted(async () => {
                 alert(msg)
                 throw new Error(msg)
             }
-            e.key = [...e.comp].map(gen => zigenKeyMap.get(gen) || '').join('')
+            e.key = (e.comp as CompItem[]).map(item => item[1]).map(gen => zigenKeyMap.get(gen) || '').join('')
         }
     }
 

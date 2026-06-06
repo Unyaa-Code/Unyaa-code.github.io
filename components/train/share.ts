@@ -24,10 +24,8 @@ export interface ZigenCard {
     _idx?: number
 }
 
-/** 字根部件项 */
-export interface CompItem {
-    [key: string]: string
-}
+/** 字根部件项 [编码, 字根] */
+export type CompItem = [string, string]
 
 /** 汉字信息 */
 export interface HanziCard {
@@ -35,7 +33,7 @@ export interface HanziCard {
     name: string,
     /** 编码 */
     key?: string,
-    /** 拆分（字符串格式，旧版兼容） */
+    /** 拆分 */
     comp?: string | CompItem[],
 }
 
@@ -106,29 +104,33 @@ export async function fetchJsonWithCache(url: string) {
 
     let json: any = null
 
-    const manifest = await loadVersionManifest()
-    const manifestKey = url.replace(/^\/+/, '')
-    const currentHash = manifest?.files?.[manifestKey]
+    const isDev = import.meta.env.DEV
 
-    if (currentHash) {
-        json = await loadIdbCache(url, currentHash)
-        if (json) {
-            fetchCache[url] = json
-            return json
-        }
-    }
+    if (!isDev) {
+        const manifest = await loadVersionManifest()
+        const manifestKey = url.replace(/^\/+/, '')
+        const currentHash = manifest?.files?.[manifestKey]
 
-    try {
-        const gzipResp = await fetch(urlFixed + '.gz')
-        if (gzipResp.ok) {
-            const text = await decompressGzip(gzipResp)
-            json = JSON.parse(text)
-            if (json.$v) {
-                delete json.$v
-                json = restoreKeys(json, url)
+        if (currentHash) {
+            json = await loadIdbCache(url, currentHash)
+            if (json) {
+                fetchCache[url] = json
+                return json
             }
         }
-    } catch {}
+
+        try {
+            const gzipResp = await fetch(urlFixed + '.gz')
+            if (gzipResp.ok) {
+                const text = await decompressGzip(gzipResp)
+                json = JSON.parse(text)
+                if (json.$v) {
+                    delete json.$v
+                    json = restoreKeys(json, url)
+                }
+            }
+        } catch {}
+    }
 
     if (!json) {
         try {
@@ -141,8 +143,13 @@ export async function fetchJsonWithCache(url: string) {
         }
     }
 
-    if (currentHash) {
-        saveIdbCache(url, currentHash, json)
+    if (!isDev) {
+        const manifest = await loadVersionManifest()
+        const manifestKey = url.replace(/^\/+/, '')
+        const currentHash = manifest?.files?.[manifestKey]
+        if (currentHash) {
+            saveIdbCache(url, currentHash, json)
+        }
     }
 
     fetchCache[url] = json

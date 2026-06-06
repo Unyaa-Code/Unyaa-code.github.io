@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { shallowRef, watch, onMounted, inject, ref } from "vue";
 import { useReview } from "./useReview";
-import { Card, ZigenCard } from "../share";
+import { Card, ZigenCard, CompItem } from "../share";
 import CardLayout from "../CardLayout.vue";
 
 const p = defineProps<{
@@ -171,7 +171,7 @@ watch(userKeys, (newKeys) => {
             <div :class="['text-center', { 'opacity-0': !isFirst }]">答案是 <b class="font-mono">
                     {{ card.key }}</b>
                 <span :class="[zigenFontClass]" v-if="'comp' in card">
-                    （{{ card.comp }}）</span>
+                    （{{ (card.comp as CompItem[]).map(c => c[1]).join('') }}）</span>
             </div>
             <label class="absolute -bottom-10 right-2 flex items-center gap-1 cursor-pointer text-xs text-gray-500 dark:text-gray-400 select-none">
                 <input type="checkbox" v-model="firstKeyOnly" class="w-3 h-3 accent-blue-500" />

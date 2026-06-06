@@ -11,5 +11,5 @@ import Train from "../../components/train/TrainBcz.vue"
 2. 建议打完3轮
 4. 可输入汉字也可输入编码
 5. 编码不足4位的，按空格
-6. 鼠标悬浮显示提示，可钉住
+6. 鼠标悬停显示提示，可钉住
 :::

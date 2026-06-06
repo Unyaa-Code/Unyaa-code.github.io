@@ -30,7 +30,7 @@ onMounted(async () => {
         const zigenMap = utils.makeMapFromArray(zigenJson)
         for (const cf of chaifenJson) {
             if (cf.key) continue
-            cf.key = [...cf.comp!].map(zg => zigenMap.get(zg)!.key).join('')
+            cf.key = (cf.comp! as utils.CompItem[]).map(item => item[1]).map(zg => zigenMap.get(zg)!.key).join('')
         }
     }
     chaifenJson.sort(utils.sortFunc)

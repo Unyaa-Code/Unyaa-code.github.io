@@ -2,7 +2,7 @@
 import { shallowRef, watch, onMounted, inject, nextTick } from "vue";
 
 import { useAnki } from "./useAnki";
-import type { Card } from "../share";
+import type { Card, CompItem } from "../share";
 
 import CardLayout from "../CardLayout.vue";
 
@@ -70,7 +70,7 @@ const cusRestart = () => {
     <div :class="['text-center', { 'opacity-0': isCorrect }]">答案是
         <b class="font-mono">{{ card!.key }}</b>
         <span :class="[zigenFontClass, 'tracking-widest opacity-80']" v-if="'comp' in card!">
-            (<span v-for="zg of card.comp" :class="{ 'highlight-text': highlightStrokes.has(zg) }">{{ zg }}</span>)</span>
+            (<span v-for="c of (card.comp as CompItem[])" :class="{ 'highlight-text': highlightStrokes.has(c[1]) }">{{ c[1] }}</span>)</span>
     </div>
 </CardLayout>
 </template>

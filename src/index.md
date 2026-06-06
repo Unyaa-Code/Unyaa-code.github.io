@@ -11,9 +11,6 @@ hero:
        text: 快速入门
        link: /Unyaa-code/Introduction
      - theme: alt
-       text: 字根学习
-       link: /Unyaa-code/gen
-     - theme: alt
        text: 拆分查询
        link: /Unyaa-code/search
 
