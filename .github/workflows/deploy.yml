@@ -25,13 +25,18 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Prepare PNPM
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
+          cache: pnpm
 
-      - run: npm ci && npm run build2
+      - run: pnpm i && pnpm run build2
 
       - uses: actions/configure-pages@v5
       
