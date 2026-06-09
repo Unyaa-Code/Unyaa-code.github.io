@@ -34,6 +34,33 @@ const progress = computed(() => currentIndex.value + 1)
 const max = computed(() => chars.value.length)
 const currentChar = computed(() => chars.value[currentIndex.value] || '')
 
+const prevChar = computed(() => {
+    if (currentIndex.value > 0) return chars.value[currentIndex.value - 1] || ''
+    return ''
+})
+
+const nextChar = computed(() => {
+    if (currentIndex.value < chars.value.length - 1) return chars.value[currentIndex.value + 1] || ''
+    return ''
+})
+
+const slideTrigger = ref(false)
+const slideDirection = ref<'forward' | 'backward'>('forward')
+const rowOffset = ref(0)
+
+watch(currentIndex, (newVal, oldVal) => {
+    slideDirection.value = newVal > oldVal ? 'forward' : 'backward'
+    slideTrigger.value = true
+
+    // 先偏移，再动画回位，产生整体滑动感
+    rowOffset.value = newVal > oldVal ? 30 : -30
+    setTimeout(() => {
+        rowOffset.value = 0
+    }, 0)
+
+    setTimeout(() => { slideTrigger.value = false }, 400)
+})
+
 const showHint = computed(() => pinned.value || hintHover.value || escHint.value)
 
 watch(round, async (newRound, oldRound) => {
@@ -264,8 +291,31 @@ function importLocalStorage() {
         </template>
         <template v-else>
         <div class="relative flex flex-col items-center">
-            <div :class="['md:text-6xl md:mr-3 text-4xl mr-0 align-middle animate__animated heiti-Unyaa', { 'text-red-400': !isCorrect, 'animate__headShake': !isCorrect }]">
-                {{ currentChar }}
+            <div class="overflow-hidden">
+                <div class="flex items-center justify-center gap-4 md:gap-8 select-none transition-transform duration-300"
+                    :style="{ transform: `translateX(${rowOffset}px)` }">
+                    <!-- 上一字 -->
+                    <div class="w-12 md:w-16 text-2xl md:text-4xl text-center text-gray-400 dark:text-gray-500 cursor-pointer hover:text-gray-600 dark:hover:text-gray-300 transition-all duration-300 heiti-Unyaa"
+                        :class="{ 'opacity-0': !prevChar }"
+                        @click="goBack" title="点击切换到上一字">
+                        {{ prevChar }}
+                    </div>
+
+                    <!-- 当前字 -->
+                    <div :key="currentIndex"
+                        class="md:text-6xl text-4xl text-center align-middle heiti-Unyaa"
+                        :class="{ 'text-red-400 animate__animated animate__headShake': !isCorrect,
+                                  'animate-pop': slideTrigger }">
+                        {{ currentChar }}
+                    </div>
+
+                    <!-- 下一字 -->
+                    <div class="w-12 md:w-16 text-2xl md:text-4xl text-center text-gray-400 dark:text-gray-500 heiti-Unyaa transition-all duration-300"
+                        :class="{ 'opacity-0': !nextChar }"
+                        title="下一字">
+                        {{ nextChar }}
+                    </div>
+                </div>
             </div>
             
             <div class="flex justify-center p-5">
@@ -304,11 +354,6 @@ function importLocalStorage() {
                     <span v-if="!showHint && currentCardData" class="text-gray-400 dark:text-gray-500 text-xs absolute inset-0 flex items-center justify-center">查看提示</span>
                 </div>
             </div>
-
-            <button class="absolute -bottom-14 left-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors text-sm"
-                @click="goBack" :disabled="currentIndex === 0" title="上一字">
-                ←
-            </button>
         </div>
         </template>
     </div>
@@ -323,3 +368,20 @@ function importLocalStorage() {
         <button class="btn btn-ghost md:text-sm text-xs font-light" @click="restart">重置</button>
     </div>
 </template>
+
+<style scoped>
+.animate-pop {
+    animation: bczPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes bczPop {
+    0% {
+        transform: scale(0.85);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+</style>
