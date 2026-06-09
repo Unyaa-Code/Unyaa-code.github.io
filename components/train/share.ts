@@ -62,7 +62,7 @@ async function loadVersionManifest() {
     if (versionLoading) return versionLoading
     versionLoading = (async () => {
         try {
-            const resp = await fetch(withBase('/data-version.json'))
+            const resp = await fetch(withBase('/data-version.json') + '?t=' + Date.now())
             if (resp.ok) {
                 versionManifest = await resp.json()
             }
