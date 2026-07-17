@@ -21,6 +21,7 @@ const uriText = computed(() => encodeURIComponent(p.name))
 const rangeLabels: Record<string, string> = {
     '1': '通规一级字',
     '2': '通规二级字',
+    '3': '通规三级字',
     '8': 'gb2312',
 }
 
