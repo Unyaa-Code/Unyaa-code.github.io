@@ -4,7 +4,6 @@ import DefaultTheme from 'vitepress/theme-without-fonts'
 import Download from "./components/Download.vue";
 import type { EnhanceAppContext } from 'vitepress'
 import { useMediumZoomProvider } from '../hooks'
-import { h } from 'vue'
 import './style.css'
 import './fonts.css'
 import './animate.css'

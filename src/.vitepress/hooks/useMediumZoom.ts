@@ -1,5 +1,5 @@
 import mediumZoom from 'medium-zoom'
-import { inject, nextTick, onMounted, watch } from 'vue'
+import { inject, nextTick, onMounted } from 'vue'
 import type { Zoom } from 'medium-zoom'
 import type { App, InjectionKey } from 'vue'
 import type { Router } from 'vitepress'
@@ -22,11 +22,19 @@ export function useMediumZoomProvider(app: App, router: Router) {
     const zoom = mediumZoom()
     zoom.refresh = () => {
         zoom.detach()
-        zoom.attach(':not(a) > img:not(.image-src)')
+        zoom.attach(':not(a) > img')
     }
     app.provide(mediumZoomSymbol, zoom)
-    watch(
-        () => router.route.path,
-        () => nextTick(() => zoom.refresh())
-    )
+
+    router.onAfterRouteChanged = () => {
+        nextTick(() => zoom.refresh())
+    }
+
+    // 在 app.mount 之后触发初始 attach
+    const originalMount = app.mount.bind(app)
+    app.mount = ((rootContainer: Element) => {
+        const result = originalMount(rootContainer)
+        nextTick(() => zoom.refresh())
+        return result
+    }) as typeof app.mount
 }

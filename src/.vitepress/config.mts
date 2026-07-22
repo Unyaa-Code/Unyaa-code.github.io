@@ -6,6 +6,15 @@ import footnote from 'markdown-it-footnote'
 
 const base = "/";
 
+const aboutGroup = [
+  {
+    items: [
+      { text: '关于', link: '/Unyaa-code/about' },
+      { text: '思路', link: '/Unyaa-code/the-idea' },
+    ]
+  }
+];
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base,
@@ -46,13 +55,8 @@ export default defineConfig({
       { text: '关于', link: '/Unyaa-code/about' },
     ],
     sidebar: {
-      '/Unyaa-code/about': [
-        {
-          items: [
-            { text: '关于', link: '/Unyaa-code/about' },
-          ]
-        }
-      ],
+      '/Unyaa-code/about': aboutGroup,
+      '/Unyaa-code/the-idea': aboutGroup,
       '/': [
         {
           items: [
@@ -61,13 +65,14 @@ export default defineConfig({
             { text: '字根学习', link: '/Unyaa-code/gen'},
             { text: '必拆汉字练习', link: '/Unyaa-code/zi'},
             { text: '字根进阶练习', link: '/Unyaa-code/gen-pro'},
+            { text: '呜喵进阶教程', link: '/Unyaa-code/advanced-tutorial' },
           ]
         },
         {
           items: [
             { text: '拆分查询', link: '/Unyaa-code/search'},
             { text: '下载与安装', link: '/Unyaa-code/install'},
-            { text: '测评数据', link: '/Unyaa-code/Assessment'},
+            { text: '测评数据', link: '/Unyaa-code/assessment'},
           ]
         }
       ]
