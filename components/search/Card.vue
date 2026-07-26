@@ -15,8 +15,16 @@ const p = defineProps<{
 const highlightStrokes = inject('high') as Set<string>
 const getUnicodeBlock = inject<(codePoint: number) => string | null>('getUnicodeBlock')
 const getCharRange = inject<(char: string) => (string | number)[] | null>('getCharRange')
+const getUnicodeAge = inject<(codePoint: number) => string | null>('getUnicodeAge')
 
 const uriText = computed(() => encodeURIComponent(p.name))
+
+const unicodeAge = computed(() => {
+  if (!getUnicodeAge) return null
+  const code = p.name.codePointAt(0)
+  if (code == null) return null
+  return getUnicodeAge(code)
+})
 
 const rangeLabels: Record<string, string> = {
     '1': '通规一级字',
@@ -25,25 +33,27 @@ const rangeLabels: Record<string, string> = {
     '8': 'gb2312',
 }
 
-const unicodeInfo = computed(() => {
+const unicodeCodeInfo = computed(() => {
     const code = p.name.codePointAt(0)!
     const parts = ['U+' + code.toString(16).toUpperCase().padStart(4, '0')]
-    
+
     if (getUnicodeBlock) {
         const block = getUnicodeBlock(code)
         if (block) parts.push(block)
     }
-    
-    if (getCharRange) {
-        const ranges = getCharRange(p.name)
-        if (ranges) {
-            for (const r of ranges) {
-                parts.push(rangeLabels[String(r)] || String(r))
-            }
-        }
+
+    if (unicodeAge.value) {
+        parts.push('Unicode ' + unicodeAge.value)
     }
-    
+
     return parts.join(' · ')
+})
+
+const unicodeRangeInfo = computed(() => {
+    if (!getCharRange) return ''
+    const ranges = getCharRange(p.name)
+    if (!ranges) return ''
+    return ranges.map(r => rangeLabels[String(r)] || String(r)).join(' · ')
 })
 
 const unicodeHex = computed(() => {
@@ -73,8 +83,9 @@ const unicodeHex = computed(() => {
             </ruby>
         </div>
         
-        <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">
-            {{ unicodeInfo }}
+        <div class="text-sm text-gray-500 dark:text-gray-400 mb-2 leading-relaxed">
+            <div v-if="unicodeRangeInfo">{{ unicodeRangeInfo }}</div>
+            <div>{{ unicodeCodeInfo }}</div>
         </div>
         
         <div class="opacity-0 justify-center group-hover:opacity-100 duration-300 delay-100 transition-all">

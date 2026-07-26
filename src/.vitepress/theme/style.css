@@ -4,17 +4,17 @@
 
 /* 还原VitePress默认字体配置，同时添加Unyaa-codePUA作为候补字体 */
 :root {
-    font-family: Arial, 'Unyaa-codePUA', Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', 'Noto Sans CJK SC', sans-serif;
+    font-family: Arial, 'Unyaa-codePUA', Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', 'Noto Sans CJK SC','遍黑体P1','遍黑体P2', sans-serif;
 }
 
 /* 确保代码块也能显示PUA字符 */
 code, pre {
-    font-family: 'Fira Code',Arial, 'Unyaa-codePUA', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-family: 'Fira Code',Arial, 'Unyaa-codePUA', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono','遍黑体P1','遍黑体P2', monospace;
 }
 
 /* 确保markdown内容能显示PUA字符 */
 .vp-doc {
-    font-family: Arial, 'Unyaa-codePUA', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', 'Noto Sans CJK SC', 'MiSans L3';
+    font-family: Arial, 'Unyaa-codePUA', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', 'Noto Sans CJK SC', 'MiSans L3','遍黑体P1','遍黑体P2';
 }
 
 @layer utilities {

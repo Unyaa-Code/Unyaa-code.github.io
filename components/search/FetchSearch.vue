@@ -5,6 +5,11 @@ import { cache, HanziCard, HanziCardMap, ZigenCard, ZigenCardMap, fetchJsonWithC
 
 type UnicodeBlock = [string, string, string]
 type CharRange = Record<string, string[]>
+interface UnicodeAgeData {
+  source: string
+  generated: string
+  ranges: [number, number, string][]
+}
 
 const p = defineProps<{
     chaifenJson?: string
@@ -26,6 +31,7 @@ const schemaData = shallowRef<{
 
 let unicodeBlocks: UnicodeBlock[] | null = null
 let charRange: CharRange | null = null
+let unicodeAge: UnicodeAgeData | null = null
 
 const schemaName = p.id || getSchemaNameFromRoute()
 const realJsonName = (json: string | undefined, jsonMainName: string) => json ? json : `/${schemaName}/${jsonMainName}.json`
@@ -58,6 +64,22 @@ const getCharRange = (char: string): (string | number)[] | null => {
 provide('getUnicodeBlock', getUnicodeBlock)
 provide('getCharRange', getCharRange)
 
+const getUnicodeAge = (codePoint: number): string | null => {
+  if (!unicodeAge) return null
+  const ranges = unicodeAge.ranges
+  let lo = 0
+  let hi = ranges.length - 1
+  while (lo <= hi) {
+    const mid = (lo + hi) >> 1
+    const [s, e, v] = ranges[mid]
+    if (codePoint < s) hi = mid - 1
+    else if (codePoint > e) lo = mid + 1
+    else return v
+  }
+  return null
+}
+provide('getUnicodeAge', getUnicodeAge)
+
 onMounted(async () => {
     let id = schemaName
 
@@ -67,14 +89,16 @@ onMounted(async () => {
         return
     }
     
-    const [chaifenJson, blocksJson, rangeJson] = await Promise.all([
+    const [chaifenJson, blocksJson, rangeJson, ageJson] = await Promise.all([
         fetchJsonWithCache(realJsonName(p.chaifenJson, 'chaifen')) as Promise<Record<string, Omit<HanziCard, 'name'>>>,
         unicodeBlocks ? Promise.resolve(null) : fetchJsonWithCache('/data/Blocks.json') as Promise<UnicodeBlock[]>,
         charRange ? Promise.resolve(null) : fetchJsonWithCache('/data/range.json') as Promise<CharRange>,
+        unicodeAge ? Promise.resolve(null) : fetchJsonWithCache('/data/unicode-age.json') as Promise<UnicodeAgeData | null>,
     ])
-    
+
     if (blocksJson) unicodeBlocks = blocksJson
     if (rangeJson) charRange = rangeJson
+    if (ageJson) unicodeAge = ageJson
     
     const result = {
         cf: makeMapFromObject(chaifenJson),

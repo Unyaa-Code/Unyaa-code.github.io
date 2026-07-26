@@ -20,8 +20,8 @@
   },
   "type": "module",
   "scripts": {
-    "prebuild": "node scripts/compress-data.js",
-    "prebuild2": "node scripts/compress-data.js",
+    "prebuild": "node scripts/gen-unicode-age.js && node scripts/compress-data.js",
+    "prebuild2": "node scripts/gen-unicode-age.js && node scripts/compress-data.js",
     "dev": "vitepress dev src",
     "build": "vitepress build src",
     "build2": "vitepress build src",

@@ -5,6 +5,9 @@ on:
   # Using a different branch name? Replace `main` with your branchâ€™s name
   push:
     branches: [ main ]
+  # 定时重新构建，从 Unicode 官方源拉取最新的 DerivedAge 数据，保持版本号始终最新
+  schedule:
+    - cron: '0 3 1 * *'
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
   
