@@ -33,6 +33,7 @@ export default defineConfig({
   },
   head: [
     ['link', { rel: 'icon', href: 'icon.svg', type: 'image/svg+xml' }],
+    ['link', { rel: 'preload', href: '/Unyaa-codePUA.woff2', as: 'font', type: 'font/woff2', crossorigin: '' }],
   ],
   vite: {
     css: {

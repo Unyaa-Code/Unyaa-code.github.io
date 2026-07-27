@@ -2,6 +2,7 @@
 @font-face {
     font-family: "Unyaa-codePUA";
     src: url("/Unyaa-codePUA.woff2") format("woff2");
+    font-display: swap;
 }
 
 .heiti-Unyaa {
