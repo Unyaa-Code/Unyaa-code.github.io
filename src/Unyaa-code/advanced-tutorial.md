@@ -14,13 +14,13 @@
 | 开 uk<br />关 xn                                             |                                                              |
 | 长 ua<br />短 qw                                             |                                                              |
 | 猫 qc<br />狗 qp                                             |                                                              |
-| 金 gjw<br />木 wm<br/>水 ys<br/>火 zh<br/>土 lt<br/>风 qr<br/>雷 pn<br/>电 va<br/>光 gg | 只有「金是三码」                                             |
+| 金 gjw<br />木 wm<br/>水 ys<br/>火 zh<br/>土 lt<br/>风 qr<br/>雷 pn<br/>电 va<br/>光 gg | 只有「金」是三码                                             |
 | 下 fk<br/>下 fkb<br />仆 jkb<br/>卞 zkb<br/>卟 dkb<br/>卡 kkb<br/>处 okb<br/>外 vkb<br/>扑 skb<br/>朴 wkb<br/>补 pkb<br/>讣 mkb<br/>赴 hkb<br/>钋 gkb | 除「下」以外 所有 *卜 都无简码                               |
 | 寺 lj<br />侍 jlj<br/>封 llj<br/>峙 zlj<br/>待 ylj<br/>恃 tlj<br/>持 slj<br/>特 blj<br/>痔 xlj<br/>诗 mlj | \*寺<br />都是三简                                           |
-| 便 jfv<br/>哽 dfv<br/>梗 wfv<br/>硬 efv<br/>粳 nfv<br/>绠 bfv<br/>埂 lfvr<br/>浭 ofvr<br/>鲠 nfvr<br /><br />使 jwr<br /> | \*更<br />只有「浭」「鲠」两字是四码，其余都可三码打出<br />「使」是和\*更相似 |
-| 主 kk<br />住 jkk<br/>往 ykk<br/>拄 skk<br/>柱 wkk<br/>注 okk<br/>疰 xkk<br/>驻 hkk<br/>麈 akk<br/>蛀 vkkw<br/>炷 zkkw | \*主<br />只有「蛀」「炷」两字是四码，其余都可三码打出       |
-| 卖 ap  <br/>续 bap  <br/>读 map  <br/>渎 oap  <br/>牍 iap  <br/>椟 wap  <br/>窦 aap  <br/>赎 zap  <br/>觌 apq   <br/>犊 bapn  <br/>黩 xapn | \*卖<br />只有「犊」「黩」两字是四码，其余都可三码打出<br /> |
-|                                                              |                                                              |
+| 便 jfv<br/>哽 dfv<br/>梗 wfv<br/>硬 efv<br/>粳 nfv<br/>绠 bfv<br/>埂 lfvr<br/>浭 ofvr<br/>鲠 nfvr<br /><br />使 jwr<br /> | \*更<br />只有「浭鲠」两字是四码，其余都可三码打出<br />「使」是和\*更相似 |
+| 主 kk<br />住 jkk<br/>往 ykk<br/>拄 skk<br/>柱 wkk<br/>注 okk<br/>疰 xkk<br/>驻 hkk<br/>麈 akk<br/>蛀 vkkw<br/>炷 zkkw | \*主<br />只有「蛀炷」两字是四码，其余都可三码打出           |
+| 卖 ap  <br/>续 bap  <br/>读 map  <br/>渎 oap  <br/>牍 iap  <br/>椟 wap  <br/>窦 aap  <br/>赎 zap  <br/>觌 apq   <br/>犊 bapn  <br/>黩 xapn | \*卖<br />只有「犊黩」两字是四码，其余都可三码打出<br />     |
+| 青 ek<br />精 ne<br/>情 te<br/>晴 ve<br/>菁 cek<br/>氰 eek<br/>锖 gek<br/>靖 hek<br/>倩 jek<br/>腈 kek<br/>请 mek<br/>鲭 nek<br/>清 oek<br/>猜 qek<br/>睛 rek<br/>圊 tek<br/>蜻 vek<br/>婧 rekv | *青<br />只需记住「精情晴」打二码，「婧」打四码，其于都打三码即可 |
 |                                                              |                                                              |
 
 
